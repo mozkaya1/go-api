@@ -3,8 +3,8 @@ API is creating weather, currency and crypto info ...
 
 ## Data Sources 
 
-- weather:Igor's flawless weather project [github](/https://github.com/chubin/wttr.in)
-- Currency: Free Api [site](/www.exchangerate-api.com)
+- weather:Igor's flawless weather project [github](https://github.com/chubin/wttr.in){:target="_blank"}
+- Currency: Free Api [site](www.exchangerate-api.com){:target="_blank"}
 - Crypto: Binance
 
 ## Default values
@@ -88,7 +88,7 @@ curl -s  localhost:8080/api|jq  ## you can install jq to better output for json 
 - assets="Currency Pairs"
 - coin="Crypto Pairs"
 
-**all queries support case insensitive**
+>all queries support case insensitive
 ```sh
 curl -s  "localhost:8080/api?location=Amsterdam&assets=EuR-TRY,USD-AUD,CHF-USD&coins=ATOMUSDT,SOLUSDT,XRPUSDT"|jq
 
