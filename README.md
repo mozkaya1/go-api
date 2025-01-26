@@ -4,7 +4,7 @@ API is creating weather, currency and crypto info ...
 ## Data Sources 
 
 - weather:Igor's flawless weather project [@github](https://github.com/chubin/wttr.in)
-- Currency: Free Api [@site](www.exchangerate-api.com)
+- Currency: Free Api [@site](https://www.exchangerate-api.com)
 - Crypto: Binance
 
 ## Default values
