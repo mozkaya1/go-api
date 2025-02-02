@@ -248,16 +248,29 @@ func GetCurrency(filterAssets []string) (Currency, error) {
 	return currency, nil
 }
 
+// CORS handler
+func enableCORS(w http.ResponseWriter, r *http.Request) bool {
+	if r.Method == http.MethodOptions {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Access-Control-Max-Age", "86400") // 24 hours
+		w.WriteHeader(http.StatusNoContent)
+		return true
+	}
+
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Expose-Headers", "Content-Length, Content-Range")
+	w.Header().Set("Vary", "Origin")
+	return false
+}
+
 // HTTP handler
 func helloHandler(w http.ResponseWriter, r *http.Request) {
-	// 1. Set CORS headers
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Accept")
-	w.Header().Set("Access-Control-Expose-Headers", "Content-Length,Content-Range")
-	w.Header().Set("Vary", "Origin")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Methods", "GET")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-	//w.Header().Set("Content-Length", "0")
+	// Handle CORS first
+	if handled := enableCORS(w, r); handled {
+		return
+	}
 	w.Header().Set("Content-Type", "application/json")
 
 	// Get the current weather and currencies
