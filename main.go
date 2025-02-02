@@ -250,6 +250,9 @@ func GetCurrency(filterAssets []string) (Currency, error) {
 
 // HTTP handler
 func helloHandler(w http.ResponseWriter, r *http.Request) {
+	// 1. Set CORS headers
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "GET")
 	w.Header().Set("Content-Type", "application/json")
 
 	// Get the current weather and currencies
